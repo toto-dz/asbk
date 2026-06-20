@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الأنشطة الرياضية - A.S.B.K</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="top-bar">
+    <div class="academy-strip">
+        <div class="container academy-strip-inner">
+            <div class="academy-name"><img src="logo.png" alt="شعار الأكاديمية" ><span>الأكاديمية الرياضية لبلدية الخنق</span></div>
+            <div class="academy-details">
+                <span><i class="fas fa-clock"></i> <span class="current-datetime"></span></span>
+                <span><i class="fas fa-map-marker-alt"></i> بلدية الخنق - الأغواط - الجزائر</span>
+            </div>
+        </div>
+    </div>
+    <div class="mobile-appbar">
+        <button type="button" id="hamburger" class="material-symbols-outlined text-primary dark:text-primary-fixed hover:opacity-80 transition-opacity active:scale-95 transition-transform duration-200" aria-label="القائمة" aria-expanded="false">
+            menu
+        </button>
+        <h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">
+            A.S.B.K
+        </h1>
+    </div>
+</div>
+
+<div class="navbar">
+    <div class="container">
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html"><i class="fas fa-home"></i> الرئيسية</a></li>
+            <li><a href="about.html"><i class="fas fa-info-circle"></i> من نحن</a></li>
+            <li><a href="courses.html"><i class="fas fa-calendar-alt"></i> الدورات</a></li>
+            <li><a href="teams.html"><i class="fas fa-users"></i> المجموعات المشاركة</a></li>
+            <li><a href="gallery.html"><i class="fas fa-images"></i> المعرض</a></li>
+            <li><a href="enroll.html"><i class="fas fa-file-alt"></i> ملف الانخراط</a></li>
+            <li><a href="contact.html"><i class="fas fa-phone-alt"></i> اتصل بنا</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="container">
+    <section>
+        <h2 class="section-title"><i class="fas fa-futbol"></i> الأنشطة الرياضية المعتمدة</h2>
+        <div class="card-grid">
+            <div class="card" style="border-top-color: #2e7d32;">
+                <i class="fas fa-futbol" style="color:#2e7d32;"></i>
+                <h3>⚽ كرة القدم</h3>
+                <p>تدريبات مكثفة، مباريات ودية، ومشاركات في بطولات محلية.</p>
+                <span class="badge">8 مجموعات</span>
+            </div>
+            <div class="card" style="border-top-color: #e65100;">
+                <i class="fas fa-basketball-ball" style="color:#e65100;"></i>
+                <h3>🏀 كرة السلة</h3>
+                <p>برامج لتطوير المهارات الفردية والجماعية، مع مدربين متخصصين.</p>
+                <span class="badge">6 مجموعات</span>
+            </div>
+            <div class="card" style="border-top-color: #b71c1c;">
+                <i class="fas fa-hand-ball" style="color:#b71c1c;"></i>
+                <h3>🤾 كرة اليد</h3>
+                <p>تدريبات على السرعة والدقة، ومشاركة في دوريات المنطقة.</p>
+                <span class="badge">4 مجموعات</span>
+            </div>
+        </div>
+    </section>
+</div>
+
+<footer>
+    <div class="container">
+        <p>© 2026 الأكاديمية الرياضية لبلدية الخنق <strong>A.S.B.K</strong> &nbsp;|&nbsp; جميع الحقوق محفوظة</p>
+        <p class="footer-text">
+            <i class="fas fa-futbol"></i> <i class="fas fa-basketball-ball"></i> <i class="fas fa-hand-ball"></i>
+        </p>
+    </div>
+</footer>
+
+<script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+
+    hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('open');
+        hamburger.classList.toggle('is-open');
+        hamburger.setAttribute('aria-expanded', navLinks.classList.contains('open'));
+        hamburger.textContent = navLinks.classList.contains('open') ? 'close' : 'menu';
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('open');
+            hamburger.classList.remove('is-open');
+            hamburger.setAttribute('aria-expanded', 'false');
+            hamburger.textContent = 'menu';
+        });
+    });
+</script>
+
+<script src="site.js"></script>
+</body>
+</html>

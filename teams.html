@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المجموعات - A.S.B.K</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="teams">
+
+<div class="top-bar">
+    <div class="academy-strip">
+        <div class="container academy-strip-inner">
+            <div class="academy-name"><img src="logo.png" alt="شعار الأكاديمية" ><span>الأكاديمية الرياضية لبلدية الخنق</span></div>
+            <div class="academy-details">
+                <span><i class="fas fa-clock"></i> <span class="current-datetime"></span></span>
+                <span><i class="fas fa-map-marker-alt"></i> بلدية الخنق - الأغواط - الجزائر</span>
+            </div>
+        </div>
+    </div>
+    <div class="mobile-appbar">
+        <button type="button" id="hamburger" class="material-symbols-outlined text-primary dark:text-primary-fixed hover:opacity-80 transition-opacity active:scale-95 transition-transform duration-200" aria-label="القائمة" aria-expanded="false">
+            menu
+        </button>
+        <h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">
+            A.S.B.K
+        </h1>
+    </div>
+</div>
+
+<div class="navbar">
+    <div class="container">
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html"><i class="fas fa-home"></i> الرئيسية</a></li>
+            <li><a href="about.html"><i class="fas fa-info-circle"></i> من نحن</a></li>
+            <li><a href="courses.html"><i class="fas fa-calendar-alt"></i> الدورات</a></li>
+            <li><a href="teams.html" class="active"><i class="fas fa-users"></i> المجموعات المشاركة</a></li>
+            <li><a href="gallery.html"><i class="fas fa-images"></i> المعرض</a></li>
+            <li><a href="enroll.html"><i class="fas fa-file-alt"></i> ملف الانخراط</a></li>
+            <li><a href="contact.html"><i class="fas fa-phone-alt"></i> اتصل بنا</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="container">
+    <section>
+        <h2 class="section-title"><i class="fas fa-users"></i> المجموعات المشاركة في دورة كرة القدم</h2>
+
+        <div class="tournament-path">
+            <div class="path-step">
+                <i class="fas fa-trophy"></i>
+                <strong>الدورة الرياضية</strong>
+            </div>
+            <div class="path-step">
+                <i class="fas fa-users"></i>
+                <strong>المجموعات المشاركة</strong>
+            </div>
+            <div class="path-step">
+                <i class="fas fa-layer-group"></i>
+                <strong>المجموعة</strong>
+            </div>
+            <div class="path-step">
+                <i class="fas fa-user-friends"></i>
+                <strong>أعضاء المجموعة</strong>
+            </div>
+        </div>
+
+        <div class="card-grid" id="groupsContainer"></div>
+
+        <!-- جدول الأعضاء الكامل -->
+        <h2 class="section-title" class="mt-40 section-title"><i class="fas fa-user-friends"></i> جدول الأعضاء</h2>
+        <div id="membersTableContainer"><p class="loading-text-simple">جارٍ التحميل…</p></div>
+
+<!-- Template for a group card (hidden) -->
+<template id="group-card-template">
+  <div class="card group-card">
+    <i class="fas fa-futbol"></i>
+    <h3 data-key="GroupName"><span class="badge" data-key="AgeRange"></span></h3>
+    <ul class="members-list">
+      <li data-key="Member1"><strong>عضو 1</strong> <span></span></li>
+      <li data-key="Member2"><strong>عضو 2</strong> <span></span></li>
+      <li data-key="Member3"><strong>عضو 3</strong> <span></span></li>
+      <li data-key="Member4"><strong>عضو 4</strong> <span></span></li>
+    </ul>
+  </div>
+</template>
+    </section>
+</div>
+
+<footer>
+    <div class="container">
+        <p>© 2026 الأكاديمية الرياضية لبلدية الخنق <strong>A.S.B.K</strong> &nbsp;|&nbsp; جميع الحقوق محفوظة</p>
+        <p class="footer-text">
+            <i class="fas fa-futbol"></i> <i class="fas fa-basketball-ball"></i> <i class="fas fa-hand-ball"></i>
+        </p>
+    </div>
+</footer>
+
+<script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+
+    hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('open');
+        hamburger.classList.toggle('is-open');
+        hamburger.setAttribute('aria-expanded', navLinks.classList.contains('open'));
+        hamburger.textContent = navLinks.classList.contains('open') ? 'close' : 'menu';
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('open');
+            hamburger.classList.remove('is-open');
+            hamburger.setAttribute('aria-expanded', 'false');
+            hamburger.textContent = 'menu';
+        });
+    });
+</script>
+
+<script src="site.js"></script>
+</body>
+</html>

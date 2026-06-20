@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدورات الرياضية - A.S.B.K</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            background-color: #f7f9fb;
+            color: #1e293b;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section Styles */
+        .hero-gradient {
+            background: linear-gradient(135deg, #0b1d45 0%, #1e3a8a 50%, #2563eb 100%);
+            position: relative;
+            overflow: hidden;
+            padding: 50px 16px 70px;
+            min-height: auto;
+        }
+
+        .hero-gradient::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="2"/><circle cx="50" cy="50" r="25" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/></svg>') repeat;
+            background-size: 60px 60px;
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .hero-particles {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float-particle 20s infinite linear;
+        }
+
+        .particle:nth-child(1) {
+            left: 5%;
+            top: 15%;
+            animation-delay: 0s;
+            width: 6px;
+            height: 6px;
+        }
+        .particle:nth-child(2) {
+            left: 90%;
+            top: 25%;
+            animation-delay: 3s;
+            width: 4px;
+            height: 4px;
+        }
+        .particle:nth-child(3) {
+            left: 15%;
+            top: 75%;
+            animation-delay: 5s;
+            width: 8px;
+            height: 8px;
+        }
+        .particle:nth-child(4) {
+            left: 80%;
+            top: 85%;
+            animation-delay: 7s;
+            width: 5px;
+            height: 5px;
+        }
+        .particle:nth-child(5) {
+            left: 45%;
+            top: 5%;
+            animation-delay: 10s;
+            width: 7px;
+            height: 7px;
+        }
+
+        @keyframes float-particle {
+            0% {
+                transform: translateY(0px) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        .hero-title {
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            animation: fadeSlideDown 0.6s ease-out;
+            font-size: clamp(24px, 7vw, 56px);
+            line-height: 1.3;
+            text-align: center;
+            color: #fff;
+        }
+
+        .hero-title .highlight {
+            background: linear-gradient(135deg, #fbbf24, #f97316);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: inline-block;
+        }
+
+        .match-card {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeSlideUp 0.6s ease-out 0.15s both;
+            padding: 20px 16px !important;
+            border-radius: 20px !important;
+        }
+
+        .match-card:active {
+            transform: scale(0.98);
+        }
+
+        .team-circle {
+            width: clamp(56px, 15vw, 80px);
+            height: clamp(56px, 15vw, 80px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: clamp(10px, 2.5vw, 14px);
+            font-weight: 700;
+            color: white;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s ease;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .team-circle:active {
+            transform: scale(0.95);
+        }
+
+        .team-circle.red {
+            background: linear-gradient(135deg, #dc2626, #991b1b);
+        }
+
+        .team-circle.blue {
+            background: linear-gradient(135deg, #2563eb, #1e3a8a);
+        }
+
+        .team-circle i {
+            font-size: clamp(16px, 4vw, 28px);
+        }
+
+        .team-name {
+            font-size: clamp(14px, 3.5vw, 24px);
+            font-weight: 700;
+            color: white;
+            margin-top: 6px;
+        }
+
+        .vs-badge {
+            background: linear-gradient(135deg, #f97316, #ea580c);
+            width: clamp(40px, 10vw, 60px);
+            height: clamp(40px, 10vw, 60px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: clamp(14px, 3.5vw, 20px);
+            font-weight: 900;
+            color: white;
+            box-shadow: 0 0 30px rgba(249, 115, 22, 0.3);
+            animation: pulse-vs 2s infinite;
+            flex-shrink: 0;
+        }
+
+        @keyframes pulse-vs {
+            0%,
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 20px rgba(249, 115, 22, 0.3);
+            }
+            50% {
+                transform: scale(1.06);
+                box-shadow: 0 0 40px rgba(249, 115, 22, 0.5);
+            }
+        }
+
+        .match-info {
+            font-size: clamp(12px, 2.8vw, 18px);
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .match-info i {
+            color: #fbbf24;
+        }
+
+        .matches-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .match-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: clamp(16px, 4vw, 40px);
+            padding: 8px 0;
+        }
+
+        .match-divider {
+            display: none;
+        }
+
+        /* Countdown Styles */
+        .countdown-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            max-width: 320px;
+            margin: 0 auto;
+        }
+
+        .countdown-item {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 10px 4px;
+            text-align: center;
+            transition: all 0.2s ease;
+        }
+
+        .countdown-item:active {
+            transform: scale(0.95);
+        }
+
+        .countdown-number {
+            font-size: clamp(20px, 6vw, 36px);
+            font-weight: 800;
+            display: block;
+            line-height: 1.2;
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .countdown-label {
+            font-size: clamp(9px, 2vw, 12px);
+            text-transform: uppercase;
+            opacity: 0.6;
+            letter-spacing: 0.5px;
+            display: block;
+            margin-top: 2px;
+            color: #e2e8f0;
+            font-weight: 500;
+        }
+
+        .countdown-message {
+            font-size: clamp(13px, 3vw, 18px);
+            color: rgba(255, 255, 255, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            padding: 0 8px;
+        }
+
+        .countdown-message i {
+            color: #fbbf24;
+        }
+
+        /* Buttons */
+        .hero-buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            max-width: 320px;
+            margin: 0 auto;
+        }
+
+        .hero-btn {
+            padding: 14px 20px;
+            border-radius: 14px;
+            font-weight: 700;
+            font-size: clamp(14px, 3.2vw, 16px);
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-decoration: none;
+            width: 100%;
+            min-height: 52px;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .hero-btn:active {
+            transform: scale(0.96);
+        }
+
+        .hero-btn-primary {
+            background: linear-gradient(135deg, #f97316, #ea580c);
+            color: white;
+            box-shadow: 0 8px 30px rgba(249, 115, 22, 0.25);
+        }
+
+        .hero-btn-primary:active {
+            box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);
+        }
+
+        .hero-btn-secondary {
+            background: rgba(255, 255, 255, 0.08);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        .hero-btn-secondary:active {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Animations */
+        @keyframes fadeSlideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Container */
+        .container-custom {
+            width: 100%;
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 0 8px;
+        }
+
+        /* Mobile First - extra small screens */
+        @media (max-width: 360px) {
+            .hero-gradient {
+                padding: 30px 8px 40px;
+            }
+
+            .countdown-grid {
+                gap: 5px;
+                max-width: 260px;
+            }
+
+            .countdown-item {
+                padding: 6px 2px;
+                border-radius: 10px;
+            }
+
+            .countdown-number {
+                font-size: 18px;
+            }
+
+            .hero-btn {
+                padding: 12px 16px;
+                font-size: 13px;
+                min-height: 46px;
+            }
+
+            .match-card {
+                padding: 14px 10px !important;
+            }
+
+            .vs-badge {
+                width: 34px;
+                height: 34px;
+                font-size: 12px;
+            }
+        }
+
+        /* Tablet and small laptops */
+        @media (min-width: 768px) {
+            .hero-gradient {
+                padding: 80px 24px 100px;
+                min-height: auto;
+            }
+
+            .container-custom {
+                max-width: 768px;
+            }
+
+            .hero-buttons {
+                flex-direction: row;
+                max-width: 100%;
+                justify-content: center;
+                gap: 16px;
+            }
+
+            .hero-btn {
+                width: auto;
+                min-width: 180px;
+                padding: 16px 32px;
+            }
+
+            .match-card {
+                padding: 40px 48px !important;
+                border-radius: 28px !important;
+            }
+
+            .countdown-grid {
+                max-width: 400px;
+                gap: 12px;
+            }
+
+            .countdown-item {
+                padding: 16px 12px;
+                border-radius: 16px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .container-custom {
+                max-width: 1024px;
+            }
+
+            .hero-btn {
+                min-width: 200px;
+                padding: 18px 40px;
+                font-size: 18px;
+            }
+
+            .hero-btn:hover {
+                transform: translateY(-3px) scale(1.02);
+            }
+
+            .hero-btn-primary:hover {
+                box-shadow: 0 12px 40px rgba(249, 115, 22, 0.5);
+            }
+
+            .hero-btn-secondary:hover {
+                background: rgba(255, 255, 255, 0.15);
+                border-color: rgba(255, 255, 255, 0.3);
+            }
+
+            .team-circle:hover {
+                transform: scale(1.08) rotate(-5deg);
+            }
+
+            .matches-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 24px;
+                max-width: 800px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .match-card {
+                padding: 32px 24px !important;
+            }
+        }
+    </style>
+<body data-page="courses">
+
+<div class="top-bar">
+    <div class="academy-strip">
+        <div class="container academy-strip-inner">
+            <div class="academy-name"><img src="logo.png" alt="شعار الأكاديمية" ><span>الأكاديمية الرياضية لبلدية الخنق</span></div>
+            <div class="academy-details">
+                <span><i class="fas fa-clock"></i> <span class="current-datetime"></span></span>
+                <span><i class="fas fa-map-marker-alt"></i> بلدية الخنق - الأغواط - الجزائر</span>
+            </div>
+        </div>
+    </div>
+    <div class="mobile-appbar">
+        <button type="button" id="hamburger" class="material-symbols-outlined text-primary dark:text-primary-fixed hover:opacity-80 transition-opacity active:scale-95 transition-transform duration-200" aria-label="القائمة" aria-expanded="false">
+            menu
+        </button>
+        <h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">
+            A.S.B.K
+        </h1>
+    </div>
+</div>
+
+<div class="navbar">
+    <div class="container">
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html"><i class="fas fa-home"></i> الرئيسية</a></li>
+            <li><a href="about.html"><i class="fas fa-info-circle"></i> من نحن</a></li>
+            <li><a href="courses.html" class="active"><i class="fas fa-calendar-alt"></i> الدورات</a></li>
+            <li><a href="teams.html"><i class="fas fa-users"></i> المجموعات المشاركة</a></li>
+            <li><a href="gallery.html"><i class="fas fa-images"></i> المعرض</a></li>
+            <li><a href="enroll.html"><i class="fas fa-file-alt"></i> ملف الانخراط</a></li>
+            <li><a href="contact.html"><i class="fas fa-phone-alt"></i> اتصل بنا</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="container">
+    <section>
+        <h2 class="section-match"><i class="fas fa-calendar-check"></i>  مباريات اليوم </h2>
+       
+        <!-- Hero Section -->
+        <section class="hero-gradient" role="banner" aria-label="القسم الرئيسي">
+            <!-- Floating Particles -->
+            <div class="hero-particles">
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+            </div>
+
+            <div class="container-custom relative z-10 text-center">
+                <!-- Title -->
+                <h1 class="hero-title font-black mb-4 md:mb-6 text-white">
+                    <span class="highlight">الدورة الرياضية</span>
+                    <br class="block sm:hidden">
+                    لكرة القدم 2026
+                </h1>
+                <h3  style="color: white;">  الأكاديمية الرياضية لبلدية الخنق </h3>
+                <!-- Match Card -->
+                <div class="matches-grid" id="matchesContainer">
+                    <p class="loading-text-simple">جارٍ تحميل المباريات…</p>
+                </div>
+
+                <!-- Countdown Timer -->
+                
+                
+            </div>
+        </section>
+    </main>
+        <h2 class="section-title"><i class="fas fa-calendar-check"></i> معلومات دورة كرة القدم</h2>
+        <div class="card-grid">
+            <div class="card">
+                <i class="fas fa-info-circle"></i>
+                <h3>الموعد والمكان</h3>
+                <div class="tournament-meta">
+                    <div class="meta-item">
+                        <strong>تاريخ البداية</strong>
+                        <span data-key="start_date">20 يونيو 2026</span>
+                    </div>
+                    <div class="meta-item">
+                        <strong>المكان</strong>
+                        <span data-key="location">الملعب البلدي للخنق</span>
+                    </div>
+                    <div class="meta-item">
+                        <strong>الفئات العمرية</strong>
+                        <span data-key="age_groups">    </span>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <i class="fas fa-clipboard-list"></i>
+                <h3>شروط الانخراط</h3>
+                <ul id="enrollmentConditionsContainer" class="conditions-list">
+                    <li>العمر بين 8 و 18 سنة</li>
+                    <li>شهادة طبية تثبت اللياقة</li>
+                    <li>استمارة الانخراط مكتملة</li>
+                    <li>دفع الرسوم المقررة</li>
+                </ul>
+                </div>
+        </div>
+
+        <div class="tournament-info">
+            <h3 class="info-title"><i class="fas fa-users"></i> المجموعات المشاركة (8 مجموعات)</h3>
+            <div class="groups-list">
+                <span>المجموعة 1</span>
+                <span>المجموعة 2</span>
+                <span>المجموعة 3</span>
+                <span>المجموعة 4</span>
+                <span>المجموعة 5</span>
+                <span>المجموعة 6</span>
+                <span>المجموعة 7</span>
+                <span>المجموعة 8</span>
+            </div>
+            <p class="groups-note"><i class="fas fa-map-pin"></i> توزع المجموعات حسب المستوى والفئة العمرية.</p>
+            <a href="teams.html" class="btn btn-outline"><i class="fas fa-users"></i> مشاهدة المجموعات والأعضاء</a>
+        </div>
+
+        <h2 class="section-title" class="mt-40 section-title"><i class="fas fa-list-alt"></i> جدول الدورات الرياضية</h2>
+        <div class="card-grid" id="coursesContainer"><p class="loading-text">جارٍ التحميل…</p></div>
+    </section>
+</div>
+
+<footer>
+    <div class="container">
+        <p>© 2026 الأكاديمية الرياضية لبلدية الخنق <strong>A.S.B.K</strong> &nbsp;|&nbsp; جميع الحقوق محفوظة</p>
+        <p class="footer-text">
+            <i class="fas fa-futbol"></i> <i class="fas fa-basketball-ball"></i> <i class="fas fa-hand-ball"></i>
+        </p>
+    </div>
+</footer>
+
+<script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+
+    hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('open');
+        hamburger.setAttribute('aria-expanded', navLinks.classList.contains('open'));
+        hamburger.textContent = navLinks.classList.contains('open') ? 'close' : 'menu';
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('open');
+            hamburger.setAttribute('aria-expanded', 'false');
+            hamburger.textContent = 'menu';
+        });
+    });
+</script>
+
+<script src="site.js"></script>
+</body>
+</html>
